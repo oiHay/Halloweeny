@@ -17,7 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_playerState.CanAct) return;
+        if (!_playerState.CanAct)
+        {
+            _rb.linearVelocity = _moveInput * 0f;
+            return;
+        }
             
         _rb.linearVelocity = _moveInput * moveSpeed;
     }

@@ -40,4 +40,22 @@ public class GameManager : MonoBehaviour
         // Debug para saber o estado atual do jogo
         DebugMessage("Estado atual do jogo: " + gameStateEventSo.currentGameState.ToString());
     }
+
+    public void TogglePause()
+    {
+        switch (gameStateEventSo.currentGameState)
+        {
+            case GameState.Play:
+                ChangeState(GameState.Pause);
+                break;
+            case GameState.Pause:
+                ChangeState(GameState.Play);
+                break;
+            case GameState.Initial:
+            case GameState.GameOver:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
 }
