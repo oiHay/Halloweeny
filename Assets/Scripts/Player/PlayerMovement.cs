@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_playerState.CanAct)
         {
-            _rb.linearVelocity = _moveInput * 0f;
+            _rb.linearVelocity = Vector2.zero;
             return;
         }
             

@@ -301,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5397dedc0bba08f43af80c73d32772a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLightAim
-  coneLightTransform: {fileID: 846561805}
 --- !u!1 &361771231
 GameObject:
   m_ObjectHideFlags: 0
