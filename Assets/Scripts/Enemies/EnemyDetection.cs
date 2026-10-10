@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyDetection : MonoBehaviour
@@ -7,16 +6,21 @@ public class EnemyDetection : MonoBehaviour
     [SerializeField] private LayerMask obstacleMask;
     
     public bool IsPlayerDetected { get; private set; }
+    public Vector2 PlayerPosition => _player.transform.position;
     
     private GameObject _player;
+    private GameStateGate _gameState;
     
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _gameState = GetComponent<GameStateGate>();
     }
 
     private void FixedUpdate()
     {
+        if (!_gameState.CanAct) return;
+        
         CheckDetection();
     }
 
@@ -24,9 +28,7 @@ public class EnemyDetection : MonoBehaviour
     {
         IsPlayerDetected = false;
         
-        Vector2 playerPos = _player.transform.position;
-        
-        Vector2 vectorToPlayer = playerPos - (Vector2)transform.position;
+        Vector2 vectorToPlayer = PlayerPosition - (Vector2)transform.position;
         float distance = vectorToPlayer.magnitude;
 
         if (distance > configSo.radius) return;
@@ -39,8 +41,6 @@ public class EnemyDetection : MonoBehaviour
         
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, obstacleMask);
         IsPlayerDetected = hit.collider == null;
-        
-        Debug.Log("player detectado");
     }
 
     private void OnDrawGizmos()
@@ -48,6 +48,6 @@ public class EnemyDetection : MonoBehaviour
         if (_player == null) return;
 
         Gizmos.color = IsPlayerDetected ? Color.red : Color.white;
-        Gizmos.DrawLine(transform.position, _player.transform.position);
+        Gizmos.DrawLine(transform.position, PlayerPosition);
     }
 }

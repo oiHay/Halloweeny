@@ -12,18 +12,32 @@ public class EnemySimpleMovement : MonoBehaviour
     [SerializeField] private Waypoint[] waypoints;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float minDistance = 0.1f;
+    [SerializeField] private float lookAroundAngle = 30f;
+    [SerializeField] private float lookAroundSpeed = 2;
 
+    private Rigidbody2D _rb;
+    private EnemyAI _enemyAI;
+    private GameStateGate _gameState;
     private int _currentIndex;
     private float _waitTimer;
-    private Rigidbody2D _rb;
+    private float _baseAngle;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _enemyAI = GetComponent<EnemyAI>();
+        _gameState = GetComponent<GameStateGate>();
     }
 
     private void FixedUpdate()
     {
+        if (!_gameState.CanAct)
+        {
+            Stop();
+            return;
+        }
+        
+        if (_enemyAI.CurrentState != EnemyAI.EnemyState.Patrulhando) return;
         if (waypoints == null || waypoints.Length == 0) return;
         
         if (_waitTimer > 0)
@@ -34,6 +48,8 @@ public class EnemySimpleMovement : MonoBehaviour
             {
                 _currentIndex = (_currentIndex + 1) % waypoints.Length;
             }
+
+            LookAround(_waitTimer, _baseAngle);
             
             return;
         }
@@ -41,26 +57,29 @@ public class EnemySimpleMovement : MonoBehaviour
         MoveToNextWaypoint();
     }
 
+    public void LookAround(float timer, float baseAngle)
+    {
+        float offset = Mathf.Sin(timer * lookAroundSpeed) * lookAroundAngle;
+        _rb.MoveRotation(baseAngle + offset);
+    }
+    
     private void MoveToNextWaypoint()
     {
         Vector2 nextWaypoint = waypoints[_currentIndex].point.position;
-        
-        Vector2 moveDirection = nextWaypoint - (Vector2)transform.position;
-        float distance = Vector2.Distance(transform.position, nextWaypoint);
-        
-        _rb.linearVelocity = moveDirection.normalized * moveSpeed;
 
-        float targetAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-        _rb.MoveRotation(targetAngle);
+        float targetAngle = MoveTowards(nextWaypoint);
+        
+        float distance = Vector2.Distance(transform.position, nextWaypoint);
         
         if (distance <= minDistance)
         {
             float waitTime = waypoints[_currentIndex].waitTime;
-            
+
             if (waitTime > 0)
             {
-                _rb.linearVelocity = Vector2.zero;
+                Stop();
                 _waitTimer = waitTime;
+                _baseAngle = targetAngle;
             }
             else
             {
@@ -69,6 +88,33 @@ public class EnemySimpleMovement : MonoBehaviour
         }
     }
 
+    public float MoveTowards(Vector2 target)
+    {
+        Vector2 direction = target - (Vector2)transform.position;
+
+        _rb.linearVelocity = direction.normalized * moveSpeed;
+
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _rb.MoveRotation(targetAngle);
+
+        return targetAngle;
+    }
+
+    public float FaceTowards(Vector2 target)
+    {
+        Vector2 direction = target - (Vector2)transform.position;
+        
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _rb.MoveRotation(targetAngle);
+
+        return targetAngle;
+    }
+
+    public void Stop()
+    {
+        _rb.linearVelocity = Vector2.zero;
+    }
+    
     private void OnDrawGizmos()
     {
         if (waypoints == null || waypoints.Length == 0) return;

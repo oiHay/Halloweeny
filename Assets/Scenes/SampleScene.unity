@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 266007510}
   - component: {fileID: 266007509}
   - component: {fileID: 266007508}
-  - component: {fileID: 266007512}
+  - component: {fileID: 266007514}
   - component: {fileID: 266007507}
   - component: {fileID: 266007513}
   m_Layer: 0
@@ -340,20 +340,6 @@ Transform:
   - {fileID: 846561805}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &266007512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266007506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be2a856263ea764c9a60df08163b68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateController
-  debugMode: 1
-  gameStateEventSo: {fileID: 11400000, guid: e6fbe627009350a4aa36fb18bc4d8425, type: 2}
 --- !u!114 &266007513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +352,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5397dedc0bba08f43af80c73d32772a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLightAim
+--- !u!114 &266007514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266007506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54aa804ecd1b3de4f900ff9d9082d7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateGate
+  debugMode: 0
+  gameStateEventSo: {fileID: 11400000, guid: e6fbe627009350a4aa36fb18bc4d8425, type: 2}
 --- !u!1 &361771231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,9 +1484,11 @@ GameObject:
   - component: {fileID: 903655623}
   - component: {fileID: 903655625}
   - component: {fileID: 903655624}
+  - component: {fileID: 903655629}
   - component: {fileID: 903655622}
   - component: {fileID: 903655626}
   - component: {fileID: 903655627}
+  - component: {fileID: 903655628}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -1584,13 +1586,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySimpleMovement
   waypoints:
   - point: {fileID: 85336193}
-    waitTime: 0
-  - point: {fileID: 1659604503}
-    waitTime: 0
-  - point: {fileID: 1190033320}
     waitTime: 2
+  - point: {fileID: 1659604503}
+    waitTime: 2
+  - point: {fileID: 1190033320}
+    waitTime: 5
   moveSpeed: 3
   minDistance: 0.1
+  lookAroundAngle: 30
+  lookAroundSpeed: 2
 --- !u!50 &903655623
 Rigidbody2D:
   serializedVersion: 5
@@ -1910,6 +1914,37 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &903655628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903655619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecde0063d8bddbe449907fed4ac52ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  observeThreshold: 1
+  chaseThreshold: 1
+  suspicionGrowthRate: 2.5
+  searchDuration: 4
+  arrivalDistance: 0.5
+--- !u!114 &903655629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903655619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54aa804ecd1b3de4f900ff9d9082d7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateGate
+  debugMode: 0
+  gameStateEventSo: {fileID: 11400000, guid: e6fbe627009350a4aa36fb18bc4d8425, type: 2}
 --- !u!1 &1190033319
 GameObject:
   m_ObjectHideFlags: 0

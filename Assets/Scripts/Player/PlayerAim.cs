@@ -4,10 +4,21 @@ using UnityEngine.InputSystem;
 public class PlayerAim : MonoBehaviour
 {
     private Vector2 _mouseScreenPos;
+    private GameStateGate _gameState;
+
+    private void Awake()
+    {
+        _gameState = GetComponent<GameStateGate>();
+    }
 
     // Quando o player mexe o mouse, o método calcula o valor de x e y e salva o valor
     private void OnLook(InputValue value)
     {
+        if (!_gameState.CanAct)
+        {
+            return;
+        }
+        
         _mouseScreenPos = value.Get<Vector2>();
     }
 

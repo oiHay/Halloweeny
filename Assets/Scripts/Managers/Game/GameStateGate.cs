@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class PlayerStateController : MonoBehaviour
+public class GameStateGate : MonoBehaviour
 {
     #region Debug
 

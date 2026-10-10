@@ -7,17 +7,17 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 _moveInput;
     private Rigidbody2D _rb;
-    private PlayerStateController _playerState;
+    private GameStateGate _gameState;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _playerState = GetComponent<PlayerStateController>();
+        _gameState = GetComponent<GameStateGate>();
     }
 
     private void FixedUpdate()
     {
-        if (!_playerState.CanAct)
+        if (!_gameState.CanAct)
         {
             _rb.linearVelocity = Vector2.zero;
             return;
