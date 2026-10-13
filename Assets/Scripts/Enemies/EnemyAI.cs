@@ -2,24 +2,41 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public enum EnemyState { Patrulhando, Observando, Perseguindo, Procurando }
+    public enum EnemyState { Patrulhando, Observando, Perseguindo, Procurando } // Dita os estados que o inimigo pode ter
+    public enum SuspicionTier { None, Yellow, Orange, Red } // Determina os graus de suspeita que o inimigo pode ter
     
     public EnemyState CurrentState { get; private set; }
+    public SuspicionTier CurrentTier { get; private set; }
 
+    [Header("Thresholders")]
     [SerializeField] private float observeThreshold;
     [SerializeField] private float chaseThreshold;
+    [SerializeField] private float redThreshold;
+    
+    [Header("GrowthRate")]
     [SerializeField] private float suspicionGrowthRate;
-    [SerializeField] private float searchDuration;
+    [SerializeField] private float lowGrowthRate;
+    [SerializeField] private float mediumGrowthRate;
+    [SerializeField] private float highGrowthRate;
+    
+    [Header("Decay")]
+    [SerializeField] private float decayRate;
+    [SerializeField] private float minDecayRate = 0.3f;
+
+    [Header("Others")]
     [SerializeField] private float arrivalDistance;
+    [SerializeField] private float maxSuspicion;
+
+    [Header("Rede de Segurança")] 
+    [SerializeField] private float maxTravelTime = 3f;
 
     private EnemyDetection _detection;
     private EnemySimpleMovement _movement;
-    private float _suspicion;
-    private float _searchTimer;
-    private float _baseAngle;
     private Vector2 _lastKnownPosition;
     private GameStateGate _gameState;
-    
+    private float _suspicion;
+    private float _baseAngle;
+    private float _travelTimer;
 
     private void Awake()
     {
@@ -35,8 +52,10 @@ public class EnemyAI : MonoBehaviour
             _movement.Stop();
             return;
         }
+
+        Debug.Log("Tier: " + CurrentTier + " - State: " + CurrentState + " - Suspicion: " + _suspicion + " - Distance: " + Vector2.Distance(transform.position, _lastKnownPosition));
         
-        switch (CurrentState)
+        switch (CurrentState) // Cada estado determina que tipo de ação deve ser determinada
         {
             case EnemyState.Patrulhando:
                 HandlePatrulhando();
@@ -54,12 +73,28 @@ public class EnemyAI : MonoBehaviour
                 HandleProcurando();
                 break;
         }
+        
+        HandleSuspicion();
+    }
+
+    private void GrowthSuspicion(float rate)
+    {
+        // Fórmula para determinar o grau de suspeita do inimigo, sendo rate qualquer variável dentro do header "GrowthRate"
+        _suspicion = Mathf.Min(_suspicion + rate * Time.fixedDeltaTime, maxSuspicion); 
+    }
+
+    private void HandleSuspicion() // Método verifica o valor da variável "_suspicion" e determina qual o grau de suspeita do inimigo
+    {
+        if (_suspicion <= 0)                  CurrentTier = SuspicionTier.None;
+        else if (_suspicion < chaseThreshold) CurrentTier = SuspicionTier.Yellow;
+        else if (_suspicion < redThreshold)   CurrentTier = SuspicionTier.Orange;
+        else                                  CurrentTier = SuspicionTier.Red;
     }
 
     private void HandlePatrulhando()
     {
         if (!_detection.IsPlayerDetected) return;
-        _suspicion += suspicionGrowthRate * Time.fixedDeltaTime;
+        GrowthSuspicion(suspicionGrowthRate);
             
         if (_suspicion >= observeThreshold) CurrentState = EnemyState.Observando;
     }
@@ -70,7 +105,7 @@ public class EnemyAI : MonoBehaviour
 
         if (_detection.IsPlayerDetected)
         {
-            _suspicion += suspicionGrowthRate * Time.fixedDeltaTime;
+            GrowthSuspicion(lowGrowthRate);
             if (_suspicion >= chaseThreshold) CurrentState = EnemyState.Perseguindo;
         }
         else
@@ -81,6 +116,8 @@ public class EnemyAI : MonoBehaviour
 
     private void HandlePerseguindo()
     {
+        GrowthSuspicion(_suspicion < redThreshold ? mediumGrowthRate : highGrowthRate);
+        
         _movement.MoveTowards(_detection.PlayerPosition);
 
         if (_detection.IsPlayerDetected) return;
@@ -90,17 +127,20 @@ public class EnemyAI : MonoBehaviour
     private void HandleProcurando()
     {
         float distance = Vector2.Distance(transform.position, _lastKnownPosition);
+        bool hasArrived = distance < arrivalDistance || _travelTimer >= maxTravelTime;
 
-        if (distance >= arrivalDistance)
+        if (!hasArrived)
         {
+            _travelTimer += Time.fixedDeltaTime;
             _baseAngle = _movement.MoveTowards(_lastKnownPosition);
         }
         else
         {
             _movement.Stop();
-            _movement.LookAround(_searchTimer, _baseAngle);
+            _movement.LookAround(Time.time, _baseAngle);
 
-            _searchTimer -= Time.fixedDeltaTime;
+            float decayAmount = Mathf.Max(decayRate * (1 - _suspicion / maxSuspicion), minDecayRate) * Time.fixedDeltaTime;
+            _suspicion -= decayAmount;
         }
 
         if (_detection.IsPlayerDetected)
@@ -108,7 +148,7 @@ public class EnemyAI : MonoBehaviour
             CurrentState = _suspicion >= chaseThreshold ? EnemyState.Perseguindo : EnemyState.Observando;
         }
 
-        if (!(_searchTimer <= 0)) return;
+        if (!(_suspicion <= 0)) return;
         _suspicion = 0;
         CurrentState = EnemyState.Patrulhando;
     }
@@ -116,7 +156,7 @@ public class EnemyAI : MonoBehaviour
     private void StartSearching()
     {
         _lastKnownPosition = _detection.PlayerPosition;
-        _searchTimer = searchDuration;
+        _travelTimer = 0f;
         CurrentState = EnemyState.Procurando;
     }
 }

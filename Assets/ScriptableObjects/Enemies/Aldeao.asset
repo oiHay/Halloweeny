@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c7e1b73676d95488435da06cfc8291, type: 3}
   m_Name: Aldeao
   m_EditorClassIdentifier: Assembly-CSharp::EnemyVisionConfigSO
-  radius: 3
-  angle: 135
+  radius: 5
+  angle: 85

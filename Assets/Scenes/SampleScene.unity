@@ -861,9 +861,9 @@ MonoBehaviour:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 0
-  m_PointLightOuterAngle: 135
+  m_PointLightOuterAngle: 85
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 3
+  m_PointLightOuterRadius: 5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -1927,10 +1927,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   observeThreshold: 1
-  chaseThreshold: 1
-  suspicionGrowthRate: 2.5
-  searchDuration: 4
-  arrivalDistance: 0.5
+  chaseThreshold: 3
+  redThreshold: 6
+  suspicionGrowthRate: 1
+  lowGrowthRate: 1.5
+  mediumGrowthRate: 2
+  highGrowthRate: 4
+  decayRate: 1.25
+  minDecayRate: 0.1
+  arrivalDistance: 1
+  maxSuspicion: 8
+  maxTravelTime: 2
 --- !u!114 &903655629
 MonoBehaviour:
   m_ObjectHideFlags: 0
