@@ -2,11 +2,25 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    #region Debug
+
+    [SerializeField] private bool debugMode;
+
+    private void DebugMessage(string message)
+    {
+        if(debugMode)
+            Debug.Log(message);
+    }
+
+    #endregion
+    
     public enum EnemyState { Patrulhando, Observando, Perseguindo, Procurando } // Dita os estados que o inimigo pode ter
     public enum SuspicionTier { None, Yellow, Orange, Red } // Determina os graus de suspeita que o inimigo pode ter
     
     public EnemyState CurrentState { get; private set; }
     public SuspicionTier CurrentTier { get; private set; }
+
+    public float Suspicion => _suspicion;
 
     [Header("Thresholders")]
     [SerializeField] private float observeThreshold;
@@ -53,7 +67,7 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        Debug.Log("Tier: " + CurrentTier + " - State: " + CurrentState + " - Suspicion: " + _suspicion + " - Distance: " + Vector2.Distance(transform.position, _lastKnownPosition));
+        DebugMessage("Tier: " + CurrentTier + " - State: " + CurrentState + " - Suspicion: " + _suspicion + " - Distance: " + Vector2.Distance(transform.position, _lastKnownPosition));
         
         switch (CurrentState) // Cada estado determina que tipo de ação deve ser determinada
         {
@@ -76,6 +90,9 @@ public class EnemyAI : MonoBehaviour
         
         HandleSuspicion();
     }
+
+    private void OnEnable() => GlobalSuspicionManager.Instance.RegisterEnemy(this);
+    private void OnDisable() => GlobalSuspicionManager.Instance.UnregisterEnemy(this);
 
     private void GrowthSuspicion(float rate)
     {
