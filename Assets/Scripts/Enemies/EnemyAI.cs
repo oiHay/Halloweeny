@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour
     public SuspicionTier CurrentTier { get; private set; }
 
     public float Suspicion => _suspicion;
+    public float SuspicionPercent => _suspicion / maxSuspicion;
 
     [Header("Thresholders")]
     [SerializeField] private float observeThreshold;
