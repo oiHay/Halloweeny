@@ -11,7 +11,6 @@ public class EnemySimpleMovement : MonoBehaviour
 {
     [SerializeField] private Waypoint[] waypoints;
     [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float minDistance = 0.1f;
     [SerializeField] private float lookAroundAngle = 30f;
     [SerializeField] private float lookAroundSpeed = 2;
 
@@ -21,6 +20,7 @@ public class EnemySimpleMovement : MonoBehaviour
     private int _currentIndex;
     private float _waitTimer;
     private float _baseAngle;
+    private float _minDistance = 0.1f;
 
     private void Awake()
     {
@@ -71,7 +71,7 @@ public class EnemySimpleMovement : MonoBehaviour
         
         float distance = Vector2.Distance(transform.position, nextWaypoint);
         
-        if (distance <= minDistance)
+        if (distance <= _minDistance)
         {
             float waitTime = waypoints[_currentIndex].waitTime;
 
