@@ -61,9 +61,9 @@ public class GlobalSuspicionManager : MonoBehaviour
         {
             if (enemy.CurrentState != EnemyAI.EnemyState.Patrulhando) anyEnemyActive = true;
             
-            if (enemy.CurrentState != EnemyAI.EnemyState.Observando) suspicionSum += enemy.Suspicion;
+            if (enemy.CurrentState == EnemyAI.EnemyState.Observando) suspicionSum += enemy.Suspicion;
             
-            if (enemy.CurrentState != EnemyAI.EnemyState.Perseguindo) suspicionSum += enemy.Suspicion * chaseWeightMultiplier;
+            if (enemy.CurrentState == EnemyAI.EnemyState.Perseguindo) suspicionSum += enemy.Suspicion * chaseWeightMultiplier;
         }
 
         if (!anyEnemyActive) _globalSuspicion -= globalDecayRate * Time.fixedDeltaTime;
