@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=08d88c405ce40d842b6013c880d13b48&amp;type=3#MainMenuStyle"/>
+    <ui:VisualElement name="SplashArt" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/UI/Menus/temp_Menu_SplashArt.png?fileID=5116792733843163631&amp;guid=03cb4387e79d98345bf53be547a792fa&amp;type=3#temp_Menu_SplashArt_0&quot;); width: 1920px; height: 1080px; position: absolute;"/>
+    <ui:VisualElement name="ButtonsContainer" style="flex-grow: 1; align-self: center; bottom: 200px; position: absolute;">
+        <ui:Button text="Start Game" name="StartGame" class="button" style="font-size: 32px; background-image: url(&quot;project://database/Assets/Art/UI/Menus/Buttons/Menus_ButtonFrame.png?fileID=-1822150024264461182&amp;guid=1f7d392fe79fcb646b98efbe842cc56a&amp;type=3#Menus_ButtonFrame_0&quot;);"/>
+        <ui:Button text="Settings" name="Settings" class="button"/>
+        <ui:Button text="Credits" name="Credits" class="button"/>
+        <ui:Button text="Exit Game" name="ExitGame" class="button"/>
+    </ui:VisualElement>
+</ui:UXML>

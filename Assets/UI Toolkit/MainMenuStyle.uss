@@ -1,0 +1,14 @@
+:root {
+}
+
+.button {
+    width: 330px;
+    height: 90px;
+    -unity-font-definition: url("project://database/Assets/Art/UI/Fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf?fileID=12800000&guid=ab0415b1735086a408c0594fd30cbea2&type=3#Merriweather-VariableFont_opsz,wdth,wght");
+    -unity-text-align: middle-center;
+    font-size: 24px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(189, 189, 189);
+    -unity-font-style: bold;
+}
