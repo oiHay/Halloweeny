@@ -4,10 +4,7 @@ using UnityEngine.UI;
 
 public class EnemySuspicionHUD : MonoBehaviour
 { 
-    [Header("Referências")]
-    [SerializeField] private RectTransform fillTransform;
     [SerializeField] private Image fillImage;
-
     [SerializeField] private Vector3 offset = new Vector3(0f, 1f, 0f);
     
     [Header("Cor")]
@@ -30,7 +27,7 @@ public class EnemySuspicionHUD : MonoBehaviour
         transform.rotation = Quaternion.identity;
 
         _canvasHUD.enabled = _enemyAI.Suspicion > 0;
-        fillTransform.localScale = new Vector3(1f, _enemyAI.SuspicionPercent, 1f);
+        fillImage.fillAmount = _enemyAI.SuspicionPercent;
 
         fillImage.color = _enemyAI.CurrentTier switch
         {
