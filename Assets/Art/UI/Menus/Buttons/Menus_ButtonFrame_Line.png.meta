@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: ea96f0b0eac727843b027f580872d54c
+guid: f3c88f1cdb7810744ac7b705da919959
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8045572661299998005
-    second: Menus_ButtonFrame_Line_0
+      213: -2905914907358161526
+    second: Menus_ButtonFrame_Line 1_0
   - first:
-      213: 8019617701669908708
-    second: Menus_ButtonFrame_Line_1
+      213: -4314282270221361513
+    second: Menus_ButtonFrame_Line 1_1
   - first:
-      213: -2284823221737916119
-    second: Menus_ButtonFrame_Line_2
+      213: 6734920626670540947
+    second: Menus_ButtonFrame_Line 1_2
   - first:
-      213: -1245814461023776030
-    second: Menus_ButtonFrame_Line_3
+      213: -3084452099243002732
+    second: Menus_ButtonFrame_Line 1_3
   - first:
-      213: 458558632645887135
-    second: Menus_ButtonFrame_Line_4
+      213: 5671127782327233523
+    second: Menus_ButtonFrame_Line 1_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -114,7 +114,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Menus_ButtonFrame_Line_0
+      name: Menus_ButtonFrame_Line 1_0
       rect:
         serializedVersion: 2
         x: 3
@@ -129,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc29e94ba42685090800000000000000
-      internalID: -8045572661299998005
+      spriteID: a859767b9cd1ca7d0800000000000000
+      internalID: -2905914907358161526
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menus_ButtonFrame_Line_1
+      name: Menus_ButtonFrame_Line 1_1
       rect:
         serializedVersion: 2
         x: 13
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4e038765fc76b4f60800000000000000
-      internalID: 8019617701669908708
+      spriteID: 79e90be12279024c0800000000000000
+      internalID: -4314282270221361513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menus_ButtonFrame_Line_2
+      name: Menus_ButtonFrame_Line 1_2
       rect:
         serializedVersion: 2
         x: 304
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9297fb5a26daa40e0800000000000000
-      internalID: -2284823221737916119
+      spriteID: 398162770ae377d50800000000000000
+      internalID: 6734920626670540947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menus_ButtonFrame_Line_3
+      name: Menus_ButtonFrame_Line 1_3
       rect:
         serializedVersion: 2
         x: 3
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e212aa295af5bee0800000000000000
-      internalID: -1245814461023776030
+      spriteID: 494b9e96823d135d0800000000000000
+      internalID: -3084452099243002732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menus_ButtonFrame_Line_4
+      name: Menus_ButtonFrame_Line 1_4
       rect:
         serializedVersion: 2
         x: 304
@@ -217,8 +217,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f940c8795a02d5600800000000000000
-      internalID: 458558632645887135
+      spriteID: 3fba67dcba4e3be40800000000000000
+      internalID: 5671127782327233523
       vertices: []
       indices: 
       edges: []
@@ -237,11 +237,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Menus_ButtonFrame_Line_0: -8045572661299998005
-      Menus_ButtonFrame_Line_1: 8019617701669908708
-      Menus_ButtonFrame_Line_2: -2284823221737916119
-      Menus_ButtonFrame_Line_3: -1245814461023776030
-      Menus_ButtonFrame_Line_4: 458558632645887135
+      Menus_ButtonFrame_Line 1_0: -2905914907358161526
+      Menus_ButtonFrame_Line 1_1: -4314282270221361513
+      Menus_ButtonFrame_Line 1_2: 6734920626670540947
+      Menus_ButtonFrame_Line 1_3: -3084452099243002732
+      Menus_ButtonFrame_Line 1_4: 5671127782327233523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
