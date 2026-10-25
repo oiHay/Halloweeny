@@ -5,18 +5,13 @@ public class EnemyVision : MonoBehaviour
 {
     [SerializeField] private EnemyVisionConfigSO enemyVisionConfigSo;
     [SerializeField] private Light2D enemyLight;
-    [SerializeField] private GameObject presenceParticlePrefab;
+    [SerializeField] private ParticleSystem presenceParticlePrefab;
 
-    private ParticleSystem[] _particles;
     
     private void Awake()
     {
         enemyLight.pointLightOuterRadius = enemyVisionConfigSo.radius;
         enemyLight.pointLightOuterAngle = enemyVisionConfigSo.angle;
-
-        GameObject spawnParticles = Instantiate(presenceParticlePrefab, transform, false);
-
-        _particles = spawnParticles.GetComponentsInChildren<ParticleSystem>();
     }
 
     public void SetVisibleToPlayer(bool isVisible)
@@ -24,8 +19,8 @@ public class EnemyVision : MonoBehaviour
         enemyLight.enabled = isVisible;
 
         if (isVisible)
-            foreach (var particle in _particles) particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            Destroy(presenceParticlePrefab.gameObject);
         else
-            foreach (var particle in _particles) particle.Play();
+            Instantiate(presenceParticlePrefab, transform.position, Quaternion.identity);
     }
 }

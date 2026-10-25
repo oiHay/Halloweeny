@@ -1032,7 +1032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &619394801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyVision
   enemyVisionConfigSo: {fileID: 11400000, guid: 5334f2e74ffd16049a9739df249954c6, type: 2}
   enemyLight: {fileID: 698008944}
-  presenceParticlePrefab: {fileID: 6267894028472906841, guid: 6f2248410d4d8154f8db18ee3dd19156, type: 3}
+  presenceParticlePrefab: {fileID: 6130397299244444809, guid: 3a6a56c2fb54cfa4687c1916529ce7b8, type: 3}
 --- !u!114 &903655627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3397,7 +3397,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3631,7 +3631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyVision
   enemyVisionConfigSo: {fileID: 11400000, guid: 5334f2e74ffd16049a9739df249954c6, type: 2}
   enemyLight: {fileID: 1857481928}
-  presenceParticlePrefab: {fileID: 6267894028472906841, guid: 6f2248410d4d8154f8db18ee3dd19156, type: 3}
+  presenceParticlePrefab: {fileID: 6130397299244444809, guid: 3a6a56c2fb54cfa4687c1916529ce7b8, type: 3}
 --- !u!114 &1895080102
 MonoBehaviour:
   m_ObjectHideFlags: 0
