@@ -25,7 +25,6 @@ public class GlobalSuspicionManager : MonoBehaviour
     [SerializeField] private float chaseWeightMultiplier = 2f;
 
     private float _globalSuspicion;
-    private List<EnemyAI> _activeEnemies = new List<EnemyAI>();
     
     private void Awake()
     {
@@ -42,22 +41,12 @@ public class GlobalSuspicionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void RegisterEnemy(EnemyAI enemy)
-    {
-        _activeEnemies.Add(enemy);
-    }
-
-    public void UnregisterEnemy(EnemyAI enemy)
-    {
-        _activeEnemies.Remove(enemy);
-    }
-
     private void FixedUpdate()
     {
         float suspicionSum = 0f;
         bool anyEnemyActive = false;
         
-        foreach (var enemy in _activeEnemies)
+        foreach (var enemy in EnemyRegistry.Instance.Enemies)
         {
             if (enemy.CurrentState != EnemyAI.EnemyState.Patrulhando) anyEnemyActive = true;
             

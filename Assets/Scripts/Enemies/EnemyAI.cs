@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     
     public EnemyState CurrentState { get; private set; }
     public SuspicionTier CurrentTier { get; private set; }
+    public EnemyVision Vision { get; private set; }
 
     public float Suspicion => _suspicion;
     public float SuspicionPercent => _suspicion / maxSuspicion;
@@ -58,6 +59,7 @@ public class EnemyAI : MonoBehaviour
         _detection = GetComponent<EnemyDetection>();
         _movement = GetComponent<EnemySimpleMovement>();
         _gameState = GetComponent<GameStateGate>();
+        Vision = GetComponent<EnemyVision>();
     }
 
     private void FixedUpdate()
@@ -92,8 +94,8 @@ public class EnemyAI : MonoBehaviour
         HandleSuspicion();
     }
 
-    private void OnEnable() => GlobalSuspicionManager.Instance.RegisterEnemy(this);
-    private void OnDisable() => GlobalSuspicionManager.Instance.UnregisterEnemy(this);
+    private void OnEnable() => EnemyRegistry.Instance.RegisterEnemy(this);
+    private void OnDisable() => EnemyRegistry.Instance.UnregisterEnemy(this);
 
     private void GrowthSuspicion(float rate)
     {
