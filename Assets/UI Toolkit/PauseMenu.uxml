@@ -1,0 +1,30 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/PauseStyle.uss?fileID=7433441132597879392&amp;guid=8495981fa8eab7b409367162cb8d4e70&amp;type=3#PauseStyle"/>
+    <ui:VisualElement name="PauseMenuContainer" style="flex-grow: 1;">
+        <ui:VisualElement name="BGD" style="flex-grow: 1; position: absolute; width: 1920px; height: 1080px; background-color: rgba(0, 0, 0, 0.8);"/>
+        <ui:Image source="project://database/Assets/Art/UI/Menus/Pause/PauseMenu_Frame.png?fileID=2800000&amp;guid=2c25920a33dac8943ae613f9f8469a5c&amp;type=3#PauseMenu_Frame" name="PauseMenuFrame" style="top: auto; left: 0; align-items: flex-start; align-self: flex-start;"/>
+        <ui:VisualElement name="PauseMenuInfoContainer" style="left: 60px; align-self: center; position: absolute; width: 360px; height: auto; align-items: center; top: 96px;">
+            <ui:Image source="project://database/Assets/Art/UI/Menus/Pause/PauseMenu_GameTitle_Small%201.png?fileID=2800000&amp;guid=994a011318aa9ce41840fb9400c2b159&amp;type=3#PauseMenu_GameTitle_Small 1" name="TitleSmall" style="border-bottom-width: 16px; margin-bottom: 12px;"/>
+            <ui:Label text="PAUSED" name="PauseText" style="align-items: center; margin-top: 12px; margin-right: 0; margin-bottom: 12px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; -unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf?fileID=12800000&amp;guid=ab0415b1735086a408c0594fd30cbea2&amp;type=3#Merriweather-VariableFont_opsz,wdth,wght&quot;); -unity-text-align: middle-center; white-space: nowrap; text-overflow: clip; font-size: 20px; color: rgb(72, 72, 72); letter-spacing: 80px;"/>
+            <ui:VisualElement name="ButtonsContainer" style="flex-grow: 1; align-self: center; bottom: auto; -unity-text-outline-color: rgba(55, 55, 55, 0); margin-bottom: 12px; margin-top: 12px;">
+                <ui:Button text="RESUME" name="Resume" class="button"/>
+                <ui:Button text="RESTART" name="Restart" class="button"/>
+                <ui:Button text="OPTIONS" name="Options" class="button"/>
+                <ui:Button text="MAIN MENU" name="MainMenu" class="button"/>
+            </ui:VisualElement>
+            <ui:Image source="project://database/Assets/Art/UI/Menus/Pause/PauseMenu_Divisor.png?fileID=2800000&amp;guid=de72c225e09538245b736504cc1c91c6&amp;type=3#PauseMenu_Divisor" name="Divisor" style="margin-top: 12px; margin-bottom: 12px;"/>
+            <ui:Label text="Return to the game" name="ButtonDescription" style="margin-top: 12px; margin-right: 0; margin-bottom: 12px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(72, 72, 72); -unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf?fileID=12800000&amp;guid=ab0415b1735086a408c0594fd30cbea2&amp;type=3#Merriweather-VariableFont_opsz,wdth,wght&quot;); font-size: 20px;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="ControlsHelpContainer" style="flex-grow: 1; -unity-text-align: middle-center; bottom: 36px; flex-direction: row; align-items: center; left: 40px; width: auto; position: absolute;">
+            <ui:VisualElement name="NavegationContainer" class="ControlsHelpContainers" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; height: auto;">
+                <ui:Label text="Navigate" name="Navigate" emoji-fallback-support="false" class="ControlsHelpContainersText" style="color: rgb(72, 72, 72); font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf?fileID=12800000&amp;guid=ab0415b1735086a408c0594fd30cbea2&amp;type=3#Merriweather-VariableFont_opsz,wdth,wght&quot;);"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="SelectContainer" class="ControlsHelpContainers" style="flex-grow: 1; height: 30px;">
+                <ui:Label text="Select" name="Select" emoji-fallback-support="false" class="ControlsHelpContainersText" style="color: rgb(72, 72, 72); font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf?fileID=12800000&amp;guid=ab0415b1735086a408c0594fd30cbea2&amp;type=3#Merriweather-VariableFont_opsz,wdth,wght&quot;);"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="BackContainer" class="ControlsHelpContainers" style="flex-grow: 1; height: 30px;">
+                <ui:Label text="Back" name="Back" emoji-fallback-support="false" class="ControlsHelpContainersText" style="color: rgb(72, 72, 72); font-size: 18px; -unity-font-definition: url(&quot;project://database/Assets/Art/UI/Fonts/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf?fileID=12800000&amp;guid=ab0415b1735086a408c0594fd30cbea2&amp;type=3#Merriweather-VariableFont_opsz,wdth,wght&quot;);"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

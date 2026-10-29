@@ -25,6 +25,6 @@
     background-color: rgba(55, 55, 55, 0);
     color: rgb(189, 189, 189);
     -unity-font-style: bold;
-    background-image: url("project://database/Assets/Art/UI/Menus/Buttons/Menus_ButtonFrame.png?fileID=-3044636705950075942&guid=79c07ad0950784946bb46bb9c2083450&type=3#Menus_ButtonFrame 1_0");
+    background-image: url("project://database/Assets/Art/UI/Menus/Buttons/Menus_ButtonFrame.png?fileID=2800000&guid=79c07ad0950784946bb46bb9c2083450&type=3#Menus_ButtonFrame");
     -unity-background-image-tint-color: rgb(113, 232, 99);
 }
